@@ -79,7 +79,7 @@
 
 &spi1 {
 
-  led_strip: ws2812@0 {
+  led_strip: sk6812@0 {
     compatible = "worldsemi,SK6812-spi";
     label = "SK6812";
 
