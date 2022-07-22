@@ -79,27 +79,26 @@
 };
 
 &spi1 {
+    compatible = "nordic,nrf-spim";
+    status = "okay";
+    mosi-pin = <6>;
+    sck-pin = <5>;
+    miso-pin = <7>;
 
-  led_strip: sk6812@0 {
-    compatible = "worldsemi,SK6812-spi";
-    label = "SK6812";
+    led_strip: sk6812@0 {
+        compatible = "worldsemi,SK6812-spi";
+        label = "SK6812";
 
-    /* SPI */
-    reg = <0>;
-    spi-max-frequency = <5250000>;
+        /* SPI */
+        reg = <0>; /* ignored, but necessary for SPI bindings */
+        spi-max-frequency = <4000000>;
 
-    /* SK6812 */
-    chain-length = <29>; /* number of LEDs */
-    spi-one-frame = <0x70>; /* make sure to configure this properly for your SOC */
-    spi-zero-frame = <0x40>; /* make sure to configure this properly for your SOC */
-    color-mapping = <LED_COLOR_ID_GREEN
-                          LED_COLOR_ID_RED
-                          LED_COLOR_ID_BLUE>;
-  };
-};
-
-/ {
-    chosen {
-        zmk,underglow = &led_strip;
+        /* SK6812 */
+        chain-length = <6>; /* number of LEDs */
+        spi-one-frame = <0x70>;
+        spi-zero-frame = <0x40>;
+        color-mapping = <LED_COLOR_ID_GREEN
+                              LED_COLOR_ID_RED
+                              LED_COLOR_ID_BLUE>;
     };
 };
